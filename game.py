@@ -155,7 +155,7 @@ def grid(locked_pos = {}): # get inther play area of program
     return grid
 
 def get_shape(): #get shape working
-    return random.choice(Shapes)
+    return Piece(5, 0, random.choice(Shapes))
 
 def draw_grid(surface, grid):
     surface.fill(black)
@@ -204,10 +204,18 @@ def main():
                 if event.key == pygame.K_SPACE:
                     pass
                 if event.key == pygame.K_UP:
-                    pass
+                    current_piece.rotation += 1
+                    if not (valid_space(current_piece, grid)):
+                        current_piece.rotation -= 1
                 if event.key == pygame.K_DOWN:
-                    pass
+                    current_piece.y += 1
+                    if not (valid_space(current_piece, grid)):
+                        current_piece.y -= 1
                 if event.key == pygame.K_LEFT:
-                    pass
+                    current_piece.x -= 1
+                    if not (valid_space(current_piece, grid)):
+                        current_piece.x += 1
                 if event.key == pygame.K_RIGHT:
-                    pass
+                    current_piece.x += 1
+                    if not (valid_space(current_piece, grid)):
+                        current_piece.x -= 1
